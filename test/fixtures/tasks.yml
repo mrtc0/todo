@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  title: MyString
+  description: MyText
+  status: MyString
+  priolity: MyString
+  deadline: 2018-06-18 18:28:11
+  label: one
+  user: one
+
+two:
+  title: MyString
+  description: MyText
+  status: MyString
+  priolity: MyString
+  deadline: 2018-06-18 18:28:11
+  label: two
+  user: two
