@@ -1,2 +1,13 @@
-<h1>Tasks#show</h1>
-<p>Find me in app/views/tasks/show.html.erb</p>
+<%= notice %>
+
+<p>Title: <%= @task.title %></p>
+<p>Description: <%= @task.description %></p>
+<p>Priority: <%= @task.priority %></p>
+<p>Expire_at: <%= @task.expire_at %></p>
+
+<p><%= link_to "編集する", edit_task_path(@task) %></p>
+<%= link_to "削除する",
+  {:controller => "tasks", :action => "destroy"},
+  method: :delete,
+  data: {confirm: "本当に移動しますか？"}
+%>
