@@ -16,7 +16,7 @@ class TasksController < ApplicationController
     respond_to do |format|
       if @task.save
         format.html {
-          redirect_to @task, notice: 'Successfull'
+          redirect_to @task, :flash => { :success => "タスクを作成しました" }
         }
       else
         format.html { render :new }
@@ -34,7 +34,7 @@ class TasksController < ApplicationController
     respond_to do |format|
       if @task.update(task_params)
         format.html {
-          redirect_to @task, notice: 'updated'
+          redirect_to @task, :flash => { :success => "更新しました" }
         }
       else
         format.html {
@@ -49,7 +49,7 @@ class TasksController < ApplicationController
 
     respond_to do |format|
       format.html {
-        redirect_to tasks_url, notice: 'deleted'
+        redirect_to tasks_url, :flash => { :success => "タスクを削除しました" }
       }
     end
   end
