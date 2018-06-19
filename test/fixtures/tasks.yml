@@ -3,17 +3,11 @@
 one:
   title: MyString
   description: MyText
-  status: MyString
-  priolity: MyString
-  deadline: 2018-06-18 18:28:11
-  label: one
-  user: one
+  priority: 1
+  due_date_on: 2018-06-19
 
 two:
   title: MyString
   description: MyText
-  status: MyString
-  priolity: MyString
-  deadline: 2018-06-18 18:28:11
-  label: two
-  user: two
+  priority: 1
+  due_date_on: 2018-06-19
