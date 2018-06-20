@@ -1,0 +1,48 @@
+AllCops:
+  Exclude:
+    - "vendor/**/*"
+    - "db/**/*"
+    - "config/**/*"
+    - "bin/*"
+    - "Gemfile"
+    - "test/**/*" # 必要になったら外す
+    - "app/helpers/**/*" # 必要になったら外す
+    - "app/channels/**/*"
+    - "app/mailers/**/*"
+    - "app/models/**/*" # 必要になったら外す
+    - "app/jobs/**/*"
+    - "config.ru"
+    - "Rakefile"
+  DisplayCopNames: true
+
+# 日本語のコメントを許可する
+Style/AsciiComments:
+  Enabled: false
+
+Style/FrozenStringLiteralComment:
+  Enabled: false
+
+# 一行で書きたくない
+Style/EmptyMethod:
+  Enabled: false
+
+Rails:
+  Enabled: true
+
+# private は少し下げたい
+Style/IndentationConsistency:
+  Enabled: true
+  EnforcedStyle: rails
+
+# %i[a, b, c] みたいな書き方はうーん...
+Style/SymbolArray:
+  EnforcedStyle: brackets
+
+# 行数制限
+# URLはOK
+Metrics/LineLength:
+  Max: 100 
+  AllowURI: true
+  URISchemes:
+    - http
+    - https
