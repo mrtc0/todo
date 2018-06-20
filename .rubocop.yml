@@ -1,0 +1,14 @@
+inherit_from: .rubocop_todo.yml
+AllCops:
+  Rails:
+    Enabled: true
+  Include:
+    - '**/Rakefile'
+    - '**/config.ru'
+  Exclude:
+    - 'db/**/*'
+    - 'config/**/*'
+    - 'script/**/*'
+    - 'bundle_bin/*'
+    - 'bin/*'
+    - !ruby/regexp /old_and_unused\.rb$/
