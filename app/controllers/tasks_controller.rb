@@ -1,13 +1,13 @@
+# タスクの一覧、作成、更新、削除
 class TasksController < ApplicationController
-
   before_action :set_param, only: [:show, :edit, :update, :destroy]
 
   def index
-    @tasks = Task.all()
+    @tasks = Task.all
   end
 
   def new
-    @task = Task.new()
+    @task = Task.new
   end
 
   def create
@@ -15,10 +15,9 @@ class TasksController < ApplicationController
 
     respond_to do |format|
       if @task.save
-        format.html {
-          redirect_to @task, :flash => { :success => "タスクを作成しました" }
-        }
+        format.html { redirect_to @task, flash: { success: 'タスクを作成しました' } }
       else
+        # TODO: エラー処理を書く
         format.html { render :new }
       end
     end
@@ -33,13 +32,10 @@ class TasksController < ApplicationController
   def update
     respond_to do |format|
       if @task.update(task_params)
-        format.html {
-          redirect_to @task, :flash => { :success => "更新しました" }
-        }
+        format.html { redirect_to @task, flash: { success: '更新しました' } }
       else
-        format.html {
-          render :edit
-        }
+        # TODO: エラー処理を書く
+        format.html { render :edit }
       end
     end
   end
@@ -48,9 +44,7 @@ class TasksController < ApplicationController
     @task.destroy
 
     respond_to do |format|
-      format.html {
-        redirect_to tasks_url, :flash => { :success => "タスクを削除しました" }
-      }
+      format.html { redirect_to tasks_url, flash: { success: 'タスクを削除しました' } }
     end
   end
 
