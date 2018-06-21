@@ -1,0 +1,9 @@
+<%= notice %>
+
+<p>Title: <%= @task.title %></p>
+<p>Description: <%= @task.description %></p>
+<p>Priority: <%= @task.priority %></p>
+<p>Expire_at: <%= @task.expire_at %></p>
+
+<p><%= link_to "編集する", edit_task_path(@task) %></p>
+<p><%= link_to "削除", task_path(@task), method: :delete, data: {confirm: "本当に削除しますか？"} %></p>
