@@ -1,6 +1,6 @@
 # タスクの一覧、作成、更新、削除
 class TasksController < ApplicationController
-  before_action :set_task_param, only: [:show, :edit, :update, :destroy]
+  before_action :set_task, only: [:show, :edit, :update, :destroy]
 
   def index
     @tasks = Task.all
@@ -50,7 +50,7 @@ class TasksController < ApplicationController
 
   private
 
-    def set_task_param
+    def set_task
       @task = Task.find(params[:id])
     end
 
