@@ -16,7 +16,7 @@ describe 'Task' do
     fill_in 'Priority', with: '1'
     find(:xpath, '/html[1]/body[1]/form[1]/div[@class="actions"]/input[1]').click
     expect(page).to have_content 'タスクを作成しました'
-    expect(Task.exists?(title: 'タスク1')).to eq(true)
+    expect(Task.exists?(title: 'タスク1')).to be_truthy
   end
 
   example 'タスクの編集ができて、メッセージが表示されること' do
