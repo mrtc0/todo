@@ -1,0 +1,25 @@
+version: "3"
+
+services:
+  app:
+    build: .
+    ports:
+      - "3000:3000"
+    environment:
+      - "DATABASE_HOST=db"
+      - "DATABASE_PORT=5432"
+      - "DATABASE_USER=postgres"
+      - "DATABASE_PASSWORD=weitarou"
+    links:
+      - db
+    volumes:
+      - "./:/app" #共有フォルダの設定
+    stdin_open: true
+
+  db:
+    image: postgres:10.1
+    ports:
+      - "5432:5432"
+    environment:
+      - "POSTGRES_USER=postgres"
+      - "POSTGRES_PASSWORD=weitarou"
