@@ -4,7 +4,9 @@
     <p>
       <%= task.title %>
       <%= link_to t('view.common.link_text.edit'), edit_task_path(task) %>
-      <%= link_to t('view.common.link_text.delete'), task_path(task), method: :delete, data: {confirm: t('view.task.message.delete_confirm')} %>
+      <%= link_to t('view.common.link_text.delete'),
+          task_path(task), method: :delete,
+          data: {confirm: t('view.task.message.delete_confirm')} %>
     </p>
   </li>
 <% end %>

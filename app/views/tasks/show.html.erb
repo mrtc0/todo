@@ -6,4 +6,8 @@
 <p>Expire_at: <%= @task.expire_at %></p>
 
 <p><%= link_to t('view.common.link_text.edit'), edit_task_path(@task) %></p>
-<p><%= link_to t('view.common.link_text.delete'), task_path(@task), method: :delete, data: {confirm: t('view.task.message.delete_confirm')} %></p>
+<p>
+<%= link_to t('view.common.link_text.delete'),
+       task_path(@task), method: :delete,
+       data: {confirm: t('view.task.message.delete_confirm')} %>
+</p>
