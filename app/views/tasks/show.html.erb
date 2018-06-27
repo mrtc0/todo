@@ -5,5 +5,9 @@
 <p>Priority: <%= @task.priority %></p>
 <p>Expire_at: <%= @task.expire_at %></p>
 
-<p><%= link_to "編集する", edit_task_path(@task) %></p>
-<p><%= link_to "削除", task_path(@task), method: :delete, data: {confirm: "本当に削除しますか？"} %></p>
+<p><%= link_to t('view.common.link_text.edit'), edit_task_path(@task) %></p>
+<p>
+<%= link_to t('view.common.link_text.delete'),
+       task_path(@task), method: :delete,
+       data: {confirm: t('view.task.message.delete_confirm')} %>
+</p>
