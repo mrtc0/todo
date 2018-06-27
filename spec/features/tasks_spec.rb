@@ -2,10 +2,7 @@ require 'rails_helper'
 
 describe 'Task' do
   before do
-    @task = Task.create(
-      title: 'タスク', description: 'これはテスト用のタスクです',
-      expire_at: '2019-01-01 00:00:00', priority: 1
-    )
+    @task = create(:task)
   end
 
   example 'タスクが作成できて、メッセージが表示されること' do
