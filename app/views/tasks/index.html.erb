@@ -3,11 +3,12 @@
   <li>
     <p>
       <%= task.title %>
-      <%= task.created_at %>
-      <%= link_to "編集", edit_task_path(task) %>  
-      <%= link_to "削除", task_path(task), method: :delete, data: {confirm: "本当に削除しますか？"} %>
+      <%= link_to t('view.common.link_text.edit'), edit_task_path(task) %>
+      <%= link_to t('view.common.link_text.delete'),
+          task_path(task), method: :delete,
+          data: {confirm: t('view.task.message.delete_confirm')} %>
     </p>
   </li>
 <% end %>
 </ul>
-<%= link_to "新規作成", new_task_path %>
+<%= link_to t('view.common.link_text.new'), new_task_path %>
