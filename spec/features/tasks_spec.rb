@@ -2,14 +2,11 @@ require 'rails_helper'
 
 describe 'Task' do
   before do
-    @task = Task.create(
-      title: 'タスク', description: 'これはテスト用のタスクです',
-      expire_at: '2019-01-01 00:00:00', priority: 1
-    )
+    @task = create_list(:task, 3)
   end
 
   example 'タスクが作成できて、メッセージが表示されること' do
-    visit '/tasks/new'
+    visit new_task_path
     fill_in 'Title', with: 'タスク1'
     fill_in 'Description', with: 'これはテスト用のタスクです'
     fill_in 'Expire at', with: '2019-01-01 00:00:00'
@@ -29,8 +26,14 @@ describe 'Task' do
   end
 
   example 'タスクの削除ができて、メッセージが表示されること' do
-    visit '/tasks/'
-    expect { click_link '削除' }.to change(Task, :count).by(-1)
+    visit tasks_path
+    expect { click_link '削除', match: :first }.to change(Task, :count).by(-1)
     expect(page).to have_content I18n.t('view.task.message.deleted')
+  end
+
+  example 'タスクが降順で表示されること' do
+    visit tasks_path
+    @created_at_days = page.all('#created_at').map(&:text)
+    expect(@created_at_days).to eq(@created_at_days.sort.reverse)
   end
 end

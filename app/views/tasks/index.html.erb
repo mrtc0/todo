@@ -1,14 +1,25 @@
-<ul>
-<% @tasks.each do |task| %>
-  <li>
-    <p>
-      <%= task.title %>
-      <%= link_to t('view.common.link_text.edit'), edit_task_path(task) %>
-      <%= link_to t('view.common.link_text.delete'),
+<table id="task_table">
+  <thead>
+    <tr>
+      <th>タスク</th>
+      <th>作成日時</th>
+      <th>期限</th>
+      <th>詳細</th>
+      <th>操作</th>
+    </tr>
+  </thead>
+  <tbody id="task_table_body">
+    <% @tasks.each do |task| %>
+      <tr>
+        <td id="title"><%= task.title %></td>
+        <td id="created_at"><%= l(task.created_at, format: :long) %></td>
+        <td id="expire_at"><%= l(task.expire_at, format: :long) %></td>
+        <td id="edit_link"><%= link_to t('view.common.link_text.edit'), edit_task_path(task) %></td>
+        <td id="delte_link"><%= link_to t('view.common.link_text.delete'),
           task_path(task), method: :delete,
-          data: {confirm: t('view.task.message.delete_confirm')} %>
-    </p>
-  </li>
-<% end %>
-</ul>
+          data: {confirm: t('view.task.message.delete_confirm')} %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
 <%= link_to t('view.common.link_text.new'), new_task_path %>
