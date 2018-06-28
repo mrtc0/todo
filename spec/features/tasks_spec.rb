@@ -6,7 +6,7 @@ describe 'Task' do
   end
 
   example 'タスクが作成できて、メッセージが表示されること' do
-    visit '/tasks/new'
+    visit new_task_path
     fill_in 'Title', with: 'タスク1'
     fill_in 'Description', with: 'これはテスト用のタスクです'
     fill_in 'Expire at', with: '2019-01-01 00:00:00'
@@ -26,13 +26,13 @@ describe 'Task' do
   end
 
   example 'タスクの削除ができて、メッセージが表示されること' do
-    visit '/tasks/'
+    visit tasks_path
     expect { click_link '削除', match: :first }.to change(Task, :count).by(-1)
     expect(page).to have_content I18n.t('view.task.message.deleted')
   end
 
   example 'タスクが降順で表示されること' do
-    visit '/'
+    visit tasks_path
     @created_at_elements = page.all('#created_at')
     expect(@created_at_elements.size).to eq(3)
 
