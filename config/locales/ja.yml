@@ -7,6 +7,9 @@ ja:
         updated: "タスクを更新しました"
         deleted: "タスクを削除しました"
         delete_confirm: "本当に削除しますか？"
+        error:
+          required: "は必須です"
+          expire_greater_than_current_time: "期限を過去の時間に設定することはできません"
       title:
         new: "タスクの新規作成"
     common:

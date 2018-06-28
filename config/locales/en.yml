@@ -7,6 +7,9 @@ en:
         updated: "Updated a task"
         deleted: "Deleted a task"
         delete_confirm: "Are you sure you want to delte the task?"
+        error:
+          required: "is required"
+          expire_greater_than_current_time: "The expire can not be set to the past time"
       title:
         new: "Create new task"
     common:
