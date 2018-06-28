@@ -33,10 +33,7 @@ describe 'Task' do
 
   example 'タスクが降順で表示されること' do
     visit tasks_path
-    @created_at_elements = page.all('#created_at')
-    expect(@created_at_elements.size).to eq(3)
-
-    @created_at_days = @created_at_elements.map(&:text)
+    @created_at_days = page.all('#created_at').map(&:text)
     expect(@created_at_days).to eq(@created_at_days.sort.reverse)
   end
 end
