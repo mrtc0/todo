@@ -2,7 +2,7 @@ require 'faker'
 
 10.times do |i|
   created_at = Faker::Time.forward.to_datetime
-  expire_at = created_at + 1
+  expire_at = created_at + 2.days
   Task.create(
     title:    "タスク#{i}",
     description:  "内容#{i}",
