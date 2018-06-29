@@ -27,5 +27,12 @@ FactoryBot.define do
       expire_at { Faker::Time.forward.to_datetime }
       priority 'wei'
     end
+
+    factory :priority_is_nil_task do
+      title 'タスク1'
+      description 'これは優先度がnilなタスクです'
+      expire_at { Faker::Time.forward.to_datetime }
+      priority nil
+    end
   end
 end

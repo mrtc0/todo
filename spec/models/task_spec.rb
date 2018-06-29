@@ -24,5 +24,10 @@ describe Task, type: :model do
       task.valid?
       expect(task.errors[:priority].size).to eq(1)
     end
+
+    it '優先度がnilのときは作成できること' do
+      task = build(:priority_is_nil_task)
+      expect(task).to be_valid
+    end
   end
 end
