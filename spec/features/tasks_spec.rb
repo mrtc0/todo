@@ -36,4 +36,17 @@ describe 'Task' do
     @created_at_days = page.all('#created_at').map(&:text)
     expect(@created_at_days).to eq(@created_at_days.sort.reverse)
   end
+
+  example '期限がnilのタスクが作成できて、正しく表示されること' do
+    visit new_task_path
+    fill_in 'Title', with: 'non-expire-task'
+    fill_in 'Description', with: 'これは期限が設定されていないタスクです'
+    fill_in 'Expire at', with: ''
+    fill_in 'Priority', with: '1'
+    find(:xpath, '/html[1]/body[1]/form[1]/div[@class="actions"]/input[1]').click
+    expect(page).to have_content I18n.t('view.task.message.created')
+    expect(Task.exists?(title: 'non-expire-task')).to be_truthy
+    visit tasks_path
+    expect(page).to have_http_status(200)
+  end
 end
