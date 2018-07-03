@@ -12,6 +12,9 @@ ja:
           expire_greater_than_current_time: "期限を過去の時間に設定することはできません"
       title:
         new: "タスクの新規作成"
+      link_text:
+        sort_by_expire: "終了期限が近い順"
+        sort_by_created_at: "作成日時が新しい順"
     common:
       button_text:
         create: "作成する"
