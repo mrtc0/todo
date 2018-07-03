@@ -49,4 +49,12 @@ describe 'Task' do
     visit tasks_path
     expect(page).to have_http_status(200)
   end
+
+  example '期限が近い順でソートされること' do
+    visit tasks_path
+    click_link('sort_by_expire')
+    @expire_at_days = page.all('#expire_at').map(&:text)
+    @expect_days = Task.order(expire_at: 'ASC').map { |t| t.expire_at&.strftime('%Y/%m/%d %H:%M') }
+    expect(@expire_at_days).to eq(@expect_days)
+  end
 end

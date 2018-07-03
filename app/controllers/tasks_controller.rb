@@ -3,7 +3,11 @@ class TasksController < ApplicationController
   before_action :set_task, only: [:show, :edit, :update, :destroy]
 
   def index
-    @tasks = Task.order(created_at: 'DESC')
+    @tasks = if params[:sort] == 'expire'
+               Task.order(expire_at: 'ASC')
+             else
+               Task.order(created_at: 'DESC')
+             end
   end
 
   def new
