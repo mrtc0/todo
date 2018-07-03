@@ -50,7 +50,7 @@ describe 'Task' do
     expect(page).to have_http_status(200)
   end
 
-  example '期限が近い順でソートされること(このテストは失敗する)' do
+  example '期限が近い順でソートされること' do
     visit tasks_path
     click_link('sort_by_expire')
     @expire_at_days = page.all('#expire_at').map(&:text)
