@@ -78,4 +78,15 @@ describe Task, type: :model do
     params = { status: 'doing' }
     expect(Task.search_by_title_and_status(params).count).to eq(1)
   end
+
+  it 'タイトルとステータスで検索ができること' do
+    task = create(:task)
+    # タスク1が見つかること
+    params = { title: '1', status: 'todo' }
+    expect(Task.search_by_title_and_status(params).count).to eq(1)
+
+    # タスクが見つからないこと
+    params = { title: '1', status: 'doing' }
+    expect(Task.search_by_title_and_status(params).count).to eq(0)
+  end
 end
