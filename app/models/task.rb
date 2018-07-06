@@ -9,8 +9,9 @@ class Task < ApplicationRecord
 
   validate :expire_greater_than_current_time
 
-  scope :search_by_title, ->(title) { where('title like ?', '%' + title + '%') unless title.nil? }
-  scope :search_by_status, ->(status) { where(status: status) unless status.nil? }
+  scope :filter_by_title, ->(title) { where('title like ?', "%#{title}%") unless title.nil? }
+  scope :filter_by_status, ->(status) { where(status: status) unless status.nil? }
+  scope :sort_by_expire, ->(sort) { sort == 'expire' ? order(expire_at: 'ASC') : order(created_at: 'DESC') }
 
   def priority_is_nil?
     priority.nil?
@@ -24,7 +25,9 @@ class Task < ApplicationRecord
     end
   end
 
-  def self.search_by_title_and_status(params)
-    search_by_title(params[:title]).search_by_status(params[:status])
+  def self.filter_by_title_and_status(params)
+    filter_by_title(params[:title])
+      .filter_by_status(params[:status])
+      .sort_by_expire(params[:sort])
   end
 end
