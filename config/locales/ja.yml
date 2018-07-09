@@ -20,6 +20,7 @@ ja:
         create: "作成する"
         update: "更新する"
         delete: "削除する"
+        search: "検索"
       link_text:
         new: "新規作成"
         edit: "編集"
