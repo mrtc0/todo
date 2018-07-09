@@ -9,6 +9,10 @@ class Task < ApplicationRecord
 
   validate :expire_greater_than_current_time
 
+  scope :filter_by_title, ->(title) { where('title like ?', "%#{title}%") unless title.nil? }
+  scope :filter_by_status, ->(status) { where(status: status) unless status.nil? }
+  scope :sort_by_expire, ->(sort) { sort == 'expire' ? order(expire_at: 'ASC') : order(created_at: 'DESC') }
+
   def priority_is_nil?
     priority.nil?
   end
@@ -19,5 +23,11 @@ class Task < ApplicationRecord
     if expire_at <= Time.zone.now
       errors.add :base, I18n.t('view.task.message.error.expire_greater_than_current_time')
     end
+  end
+
+  def self.filter_by_title_and_status(params)
+    filter_by_title(params[:title])
+      .filter_by_status(params[:status])
+      .sort_by_expire(params[:sort])
   end
 end
