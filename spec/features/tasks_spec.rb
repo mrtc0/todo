@@ -64,6 +64,7 @@ describe 'Task' do
     visit '/'
     fill_in 'title', with: 'タスク'
     find(:xpath, '/html[1]/body[1]/form[1]/input[3]').click
+    # %E3%82%BF%E3%82%B9%E3%82%AF1 = タスク
     visit '/tasks?title=%E3%82%BF%E3%82%B9%E3%82%AF1&status='
     expect(page.all('tbody tr').count).to eq(Task.where("title like '%タスク%'").count)
   end
@@ -72,7 +73,7 @@ describe 'Task' do
     visit '/'
     select 'doing', from: 'status'
     find(:xpath, '/html[1]/body[1]/form[1]/input[3]').click
-    visit '/tasks?utf8=%E2%9C%93&title=&status=1&commit=%E6%A4%9C%E7%B4%A2'
+    visit '/tasks?title=&status=1'
     expect(page.all('tbody tr').count).to eq(Task.doing.count)
   end
 
@@ -81,7 +82,9 @@ describe 'Task' do
     fill_in 'title', with: 'task'
     select 'doing', from: 'status'
     find(:xpath, '/html[1]/body[1]/form[1]/input[3]').click
-    visit '/tasks?utf8=%E2%9C%93&title=task&status=1&commit=%E6%A4%9C%E7%B4%A2'
-    expect(page.all('tbody tr').count).to eq(Task.filter_by_title('task').filter_by_status('doing').count)
+    # タイトルが「task」を含み、かつ、doingであるものを検索
+    visit '/tasks?title=task&status=1'
+    expect_task = Task.filter_by_title('task').filter_by_status('doing')
+    expect(page.all('tbody tr').count).to eq(expect_task.count)
   end
 end
