@@ -3,6 +3,8 @@ require 'rails_helper'
 describe 'Task' do
   before do
     @task = create_list(:task, 3)
+    create_list(:status_is_doing_task, 3)
+    create_list(:status_is_done_task, 3)
   end
 
   example 'タスクが作成できて、メッセージが表示されること' do
@@ -56,5 +58,30 @@ describe 'Task' do
     @expire_at_days = page.all('#expire_at').map(&:text)
     @expect_days = Task.order(expire_at: 'ASC').map { |t| t.expire_at&.strftime('%Y/%m/%d %H:%M') }
     expect(@expire_at_days).to eq(@expect_days)
+  end
+
+  example 'タイトルで検索できること' do
+    visit '/'
+    fill_in 'title', with: 'タスク'
+    find(:xpath, '/html[1]/body[1]/form[1]/input[3]').click
+    visit '/tasks?title=%E3%82%BF%E3%82%B9%E3%82%AF1&status='
+    expect(page.all('tbody tr').count).to eq(Task.where("title like '%タスク%'").count)
+  end
+
+  example 'ステータスで検索できること' do
+    visit '/'
+    select 'doing', from: 'status'
+    find(:xpath, '/html[1]/body[1]/form[1]/input[3]').click
+    visit '/tasks?utf8=%E2%9C%93&title=&status=1&commit=%E6%A4%9C%E7%B4%A2'
+    expect(page.all('tbody tr').count).to eq(Task.doing.count)
+  end
+
+  example 'タイトルとステータスで検索できること' do
+    visit '/'
+    fill_in 'title', with: 'task'
+    select 'doing', from: 'status'
+    find(:xpath, '/html[1]/body[1]/form[1]/input[3]').click
+    visit '/tasks?utf8=%E2%9C%93&title=task&status=1&commit=%E6%A4%9C%E7%B4%A2'
+    expect(page.all('tbody tr').count).to eq(Task.filter_by_title('task').filter_by_status('doing').count)
   end
 end

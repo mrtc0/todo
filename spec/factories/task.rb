@@ -34,5 +34,17 @@ FactoryBot.define do
       expire_at { Faker::Time.forward.to_datetime }
       priority nil
     end
+
+    factory :status_is_doing_task do
+      title 'doing-task'
+      description 'これはstatusがdoingなタスクです'
+      priority 1
+    end
+
+    factory :status_is_done_task do
+      title 'done-task'
+      description 'これはstatusがdoneなタスクです'
+      priority 1
+    end
   end
 end
