@@ -4,6 +4,7 @@ class TasksController < ApplicationController
 
   def index
     @tasks = Task.filter_by_title_and_status(params)
+    @statuses = Task.statuses
   end
 
   def new
