@@ -28,6 +28,7 @@ class TasksController < ApplicationController
   end
 
   def edit
+    @statuses = Task.statuses
   end
 
   def update

@@ -1,7 +1,7 @@
 <%= link_to t('view.task.link_text.sort_by_expire'), tasks_path(sort: 'expire'), id: "sort_by_expire"  %> | 
 <%= link_to t('view.task.link_text.sort_by_created_at'), tasks_path, id: "sort_by_created_at" %>
 
-<%= render 'search_form' %>
+<%= render 'search_form', statuses: @statuses %>
 
 <hr />
 <table id="task_table">
