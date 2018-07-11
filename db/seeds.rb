@@ -1,10 +1,6 @@
 require 'faker'
 
-# Index が効いているか確認するために
-# めちゃくちゃな量を登録している
-# 確認が終わったら削除する
-
-100000.times do |i|
+10.times do |i|
   created_at = Faker::Time.forward.to_datetime
   expire_at = created_at + 2.days
   Task.create(
