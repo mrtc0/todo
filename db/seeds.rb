@@ -7,6 +7,7 @@ require 'faker'
     title:    "タスク#{i}",
     description:  "内容#{i}",
     priority: 1,
+    status: Faker::Number.between(0, 2),
     expire_at: expire_at,
     created_at: created_at
   )
