@@ -1,4 +1,4 @@
 <h1><%= t('view.task.title.new') %></h1>
 
-<%= render 'new_form', task: @task %>
+<%= render 'new_form', task: @task, priorities: @priorities %>
 <%= link_to t('view.common.link_text.back'), tasks_path %>
