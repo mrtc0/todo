@@ -21,13 +21,6 @@ FactoryBot.define do
       description 'これはタイトルがないタスクです'
     end
 
-    factory :priority_is_not_integer_task do
-      title 'タスク1'
-      description 'これは優先度が数値ではないタスクです'
-      expire_at { Faker::Time.forward.to_datetime }
-      priority 'wei'
-    end
-
     factory :priority_is_nil_task do
       title 'タスク1'
       description 'これは優先度がnilなタスクです'
