@@ -1,21 +1,15 @@
 class Task < ApplicationRecord
   enum status: { todo: 0, doing: 1, done: 2 }
+  enum priority: { non: 0, low: 1, meddium: 2, high: 3 }
 
   validates :title,
     presence: { message: I18n.t('view.task.message.error.required') }
-
-  validates :priority,
-    numericality: { only_integer: true }, unless: :priority_is_nil?
 
   validate :expire_greater_than_current_time
 
   scope :filter_by_title, ->(title) { where('title like ?', "%#{title}%") unless title.blank? }
   scope :filter_by_status, ->(status) { where(status: status) unless status.blank? }
   scope :sort_by_expire, ->(sort) { sort == 'expire' ? order(expire_at: 'ASC') : order(created_at: 'DESC') }
-
-  def priority_is_nil?
-    priority.nil?
-  end
 
   def expire_greater_than_current_time
     return if expire_at.nil?

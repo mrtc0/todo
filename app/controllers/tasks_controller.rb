@@ -9,6 +9,7 @@ class TasksController < ApplicationController
 
   def new
     @task = Task.new
+    @priorities = Task.priorities
   end
 
   def create
@@ -29,6 +30,7 @@ class TasksController < ApplicationController
 
   def edit
     @statuses = Task.statuses
+    @priorities = Task.priorities
   end
 
   def update

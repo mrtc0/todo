@@ -19,17 +19,6 @@ describe Task, type: :model do
       expect(task.errors.size).to eq(1)
     end
 
-    it '優先度が数字じゃない場合は作成できないこと' do
-      task = build(:priority_is_not_integer_task)
-      task.valid?
-      expect(task.errors[:priority].size).to eq(1)
-    end
-
-    it '優先度がnilのときは作成できること' do
-      task = build(:priority_is_nil_task)
-      expect(task).to be_valid
-    end
-
     it 'ステータスがデフォルトで未着手であること' do
       task = build(:task)
       expect(task.status).to eq('todo')
