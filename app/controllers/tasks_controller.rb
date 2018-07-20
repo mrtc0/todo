@@ -1,9 +1,10 @@
 # タスクの一覧、作成、更新、削除
 class TasksController < ApplicationController
   before_action :set_task, only: [:show, :edit, :update, :destroy]
+  before_action :set_priority, only: [:index]
 
   def index
-    @tasks = Task.filter_by_title_and_status(params)
+    @tasks = @current_tasks.filter_by_title_and_status(params)
     @statuses = Task.statuses
   end
 
@@ -60,5 +61,14 @@ class TasksController < ApplicationController
 
     def task_params
       params.require(:task).permit(:title, :description, :expire_at, :priority)
+    end
+
+    def set_priority
+      case
+      when params[:priority]
+        @current_tasks = Task.sort_by_priority(params[:priority])
+      else
+        @current_tasks = Task.all
+      end
     end
 end
