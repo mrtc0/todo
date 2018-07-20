@@ -78,4 +78,16 @@ describe Task, type: :model do
     params = { title: '1', status: 'doing' }
     expect(Task.filter_by_title_and_status(params).count).to eq(0)
   end
+
+  it '優先順位が高い順で並び替えれること' do
+    params = { priority: 'desc' }
+    desc_priorities = Task.all.map { |task| task.priority }
+    expect(Task.sort_by_priority(params).map { |task| tasks.priority }).to eq(desc_priorities)
+  end
+
+  it '優先順位が低い順で並び替えれること' do
+    params = { priority: 'asc' }
+    desc_priorities = Task.all.map { |task| task.priority }
+    expect(Task.sort_by_priority(params).map { |task| tasks.priority }).to eq(desc_priorities.reverse)
+  end
 end
