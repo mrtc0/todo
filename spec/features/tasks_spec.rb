@@ -93,8 +93,7 @@ describe 'Task' do
     visit tasks_path
     click_link('sort_by_priority_desc')
     @expire_priorities = page.all('#priority').map(&:text)
-    # ここでDESCじゃないので失敗する
-    @expect_priorities = Task.order(priority: 'ASC').map(&:priority)
+    @expect_priorities = Task.order(priority: 'DESC').map(&:priority)
     expect(@expire_priorities).to eq(@expect_priorities)
   end
 
@@ -103,8 +102,7 @@ describe 'Task' do
     visit tasks_path
     click_link('sort_by_priority_asc')
     @expire_priorities = page.all('#priority').map(&:text)
-    # ここでASCじゃないので失敗する
-    @expect_priorities = Task.order(priority: 'DESC').map(&:priority)
+    @expect_priorities = Task.order(priority: 'ASC').map(&:priority)
     expect(@expire_priorities).to eq(@expect_priorities)
   end
 end
