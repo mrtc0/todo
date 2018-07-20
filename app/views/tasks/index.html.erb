@@ -1,5 +1,7 @@
 <%= link_to t('view.task.link_text.sort_by_expire'), tasks_path(sort: 'expire'), id: "sort_by_expire"  %> | 
 <%= link_to t('view.task.link_text.sort_by_created_at'), tasks_path, id: "sort_by_created_at" %>
+<%= link_to t('view.task.link_text.sort_by_priority_desc'), tasks_path(priority: 'desc'), id: "sort_by_priority" %>
+<%= link_to t('view.task.link_text.sort_by_priority_asc'), tasks_path(priority: 'asc'), id: "sort_by_asc" %>
 
 <%= render 'search_form', statuses: @statuses %>
 
