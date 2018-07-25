@@ -43,7 +43,7 @@ FactoryBot.define do
     factory :priority_is_random_task do
       title '優先度ランダムタスク'
       description 'これは優先度がランダムに設定されるタスクです'
-      priority Faker::Number.between(0, 3)
+      priority { Faker::Number.between(0, 3) }
     end
   end
 end
