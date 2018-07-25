@@ -1,5 +1,7 @@
 <%= link_to t('view.task.link_text.sort_by_expire'), tasks_path(sort: 'expire'), id: "sort_by_expire"  %> | 
 <%= link_to t('view.task.link_text.sort_by_created_at'), tasks_path, id: "sort_by_created_at" %>
+<%= link_to t('view.task.link_text.sort_by_priority_desc'), tasks_path(priority: 'desc'), id: "sort_by_priority_desc" %>
+<%= link_to t('view.task.link_text.sort_by_priority_asc'), tasks_path(priority: 'asc'), id: "sort_by_priority_asc" %>
 
 <%= render 'search_form', statuses: @statuses %>
 
@@ -9,6 +11,7 @@
     <tr>
       <th>タスク</th>
       <th>ステータス</th>
+      <th>優先度</th>
       <th>作成日時</th>
       <th>期限</th>
       <th>詳細</th>
@@ -20,6 +23,7 @@
       <tr>
         <td id="title"><%= task.title %></td>
         <td id="status"><%= task.status %></td>
+        <td id="priority"><%= task.priority %></td>
         <td id="created_at"><%= l(task.created_at, format: :long) %></td>
         <td id="expire_at"><%= l(task.expire_at, format: :long) unless task.expire_at.nil? %></td>
         <td id="edit_link"><%= link_to t('view.common.link_text.edit'), edit_task_path(task) %></td>

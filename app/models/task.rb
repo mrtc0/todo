@@ -11,6 +11,8 @@ class Task < ApplicationRecord
   scope :filter_by_status, ->(status) { where(status: status) unless status.blank? }
   scope :sort_by_expire, ->(sort) { sort == 'expire' ? order(expire_at: 'ASC') : order(created_at: 'DESC') }
 
+  scope :sort_by_priority, ->(priority) { priority == 'desc' ? order(priority: 'DESC') : order(priority: 'ASC') }
+
   def expire_greater_than_current_time
     return if expire_at.nil?
 

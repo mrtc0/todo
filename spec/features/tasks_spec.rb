@@ -87,4 +87,22 @@ describe 'Task' do
     expect_task = Task.filter_by_title('task').filter_by_status('doing')
     expect(page.all('tbody tr').count).to eq(expect_task.count)
   end
+
+  example '優先度が高い順でソートされること' do
+    create_list(:priority_is_random_task, 10)
+    visit tasks_path
+    click_link('sort_by_priority_desc')
+    @priorities = page.all('#priority').map(&:text)
+    @expect_priorities = Task.order(priority: 'DESC').map(&:priority)
+    expect(@priorities).to eq(@expect_priorities)
+  end
+
+  example '優先度が低い順でソートされること' do
+    create_list(:priority_is_random_task, 10)
+    visit tasks_path
+    click_link('sort_by_priority_asc')
+    @priorities = page.all('#priority').map(&:text)
+    @expect_priorities = Task.order(priority: 'ASC').map(&:priority)
+    expect(@priorities).to eq(@expect_priorities)
+  end
 end

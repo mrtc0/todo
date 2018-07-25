@@ -15,6 +15,8 @@ ja:
       link_text:
         sort_by_expire: "終了期限が近い順"
         sort_by_created_at: "作成日時が新しい順"
+        sort_by_priority_desc: "優先度が高い順"
+        sort_by_priority_asc: "優先度が低い順"
     common:
       button_text:
         create: "作成する"
