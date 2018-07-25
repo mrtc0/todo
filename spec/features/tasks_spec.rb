@@ -92,17 +92,17 @@ describe 'Task' do
     create_list(:priority_is_random_task, 10)
     visit tasks_path
     click_link('sort_by_priority_desc')
-    @expire_priorities = page.all('#priority').map(&:text)
+    @priorities = page.all('#priority').map(&:text)
     @expect_priorities = Task.order(priority: 'DESC').map(&:priority)
-    expect(@expire_priorities).to eq(@expect_priorities)
+    expect(@priorities).to eq(@expect_priorities)
   end
 
   example '優先度が低い順でソートされること' do
     create_list(:priority_is_random_task, 10)
     visit tasks_path
     click_link('sort_by_priority_asc')
-    @expire_priorities = page.all('#priority').map(&:text)
+    @priorities = page.all('#priority').map(&:text)
     @expect_priorities = Task.order(priority: 'ASC').map(&:priority)
-    expect(@expire_priorities).to eq(@expect_priorities)
+    expect(@priorities).to eq(@expect_priorities)
   end
 end
