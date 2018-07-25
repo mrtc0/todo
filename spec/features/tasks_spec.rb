@@ -88,7 +88,7 @@ describe 'Task' do
     expect(page.all('tbody tr').count).to eq(expect_task.count)
   end
 
-  example '優先順位が高い順でソートされること' do
+  example '優先度が高い順でソートされること' do
     create_list(:priority_is_random_task, 10)
     visit tasks_path
     click_link('sort_by_priority_desc')
@@ -97,7 +97,7 @@ describe 'Task' do
     expect(@expire_priorities).to eq(@expect_priorities)
   end
 
-  example '優先順位が低い順でソートされること' do
+  example '優先度が低い順でソートされること' do
     create_list(:priority_is_random_task, 10)
     visit tasks_path
     click_link('sort_by_priority_asc')
