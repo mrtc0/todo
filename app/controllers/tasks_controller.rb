@@ -64,8 +64,7 @@ class TasksController < ApplicationController
     end
 
     def set_priority
-      case
-      when params[:priority]
+      if params[:priority]
         @current_tasks = Task.sort_by_priority(params[:priority])
       else
         @current_tasks = Task.all
