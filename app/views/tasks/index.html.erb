@@ -1,15 +1,16 @@
-<%= link_to t('view.task.link_text.sort_by_expire'), tasks_path(sort: 'expire'), id: "sort_by_expire"  %> | 
-<%= link_to t('view.task.link_text.sort_by_created_at'), tasks_path, id: "sort_by_created_at" %>
-<%= link_to t('view.task.link_text.sort_by_priority_desc'), tasks_path(priority: 'desc'), id: "sort_by_priority_desc" %>
-<%= link_to t('view.task.link_text.sort_by_priority_asc'), tasks_path(priority: 'asc'), id: "sort_by_priority_asc" %>
-
 <%= render 'search_form', statuses: @statuses %>
+
+<nav class="nav">
+  <%= link_to t('view.task.link_text.sort_by_expire'), tasks_path(sort: 'expire'), id: "sort_by_expire", class: "nav-link"  %>
+  <%= link_to t('view.task.link_text.sort_by_created_at'), tasks_path, id: "sort_by_created_at", class: "nav-link" %>
+  <%= link_to t('view.task.link_text.sort_by_priority_desc'), tasks_path(priority: 'desc'), id: "sort_by_priority_desc", class: "nav-link" %>
+  <%= link_to t('view.task.link_text.sort_by_priority_asc'), tasks_path(priority: 'asc'), id: "sort_by_priority_asc", class: "nav-link"%>
+</nav>
 
 <hr />
 
-
-<table id="task_table">
-  <thead>
+<table id="task_table" class="table">
+  <thead class="thead-dark">
     <tr>
       <th>タスク</th>
       <th>ステータス</th>

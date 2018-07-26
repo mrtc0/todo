@@ -10,9 +10,12 @@
   </head>
 
   <body>
-    <% flash.each do |key, value| %>
-      <%= content_tag(:div, value, class: key) %>
-    <% end %>
-    <%= yield %>
+    <%= render 'navbar' %>
+    <div class="container">
+      <% flash.each do |key, value| %>
+        <%= content_tag(:div, value, class: key) %>
+      <% end %>
+      <%= yield %>
+    </div>
   </body>
 </html>
