@@ -65,9 +65,9 @@ class TasksController < ApplicationController
 
     def set_priority
       if params[:priority]
-        @current_tasks = Task.sort_by_priority(params[:priority])
+        @current_tasks = Task.page(params[:page]).sort_by_priority(params[:priority])
       else
-        @current_tasks = Task.all
+        @current_tasks = Task.page(params[:page])
       end
     end
 end
