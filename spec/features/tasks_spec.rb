@@ -1,4 +1,7 @@
 require 'rails_helper'
+require 'kaminari'
+
+ITEM_PER_PAGE = Kaminari.config.default_per_page # kaminari の1ページあたりのアイテム数
 
 describe 'Task' do
   before do
@@ -93,7 +96,7 @@ describe 'Task' do
     visit tasks_path
     click_link('sort_by_priority_desc')
     @priorities = page.all('#priority').map(&:text)
-    @expect_priorities = Task.order(priority: 'DESC').map(&:priority)
+    @expect_priorities = Task.order(priority: 'DESC').limit(ITEM_PER_PAGE).map(&:priority)
     expect(@priorities).to eq(@expect_priorities)
   end
 
@@ -102,7 +105,15 @@ describe 'Task' do
     visit tasks_path
     click_link('sort_by_priority_asc')
     @priorities = page.all('#priority').map(&:text)
-    @expect_priorities = Task.order(priority: 'ASC').map(&:priority)
+    @expect_priorities = Task.order(priority: 'ASC').limit(ITEM_PER_PAGE).map(&:priority)
     expect(@priorities).to eq(@expect_priorities)
+  end
+
+  example 'ページネーションによってタスクが10個ずつ表示されていること' do
+    create_list(:task, 50)
+    visit tasks_path
+    expect(page.all('#task_table_body tr').size).to eq(ITEM_PER_PAGE)
+    click_link('2')
+    expect(page.all('#task_table_body tr').size).to eq(ITEM_PER_PAGE)
   end
 end

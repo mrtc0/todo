@@ -6,6 +6,8 @@
 <%= render 'search_form', statuses: @statuses %>
 
 <hr />
+
+
 <table id="task_table">
   <thead>
     <tr>
@@ -34,4 +36,7 @@
     <% end %>
   </tbody>
 </table>
+
+<%= paginate @tasks %>
+
 <%= link_to t('view.common.link_text.new'), new_task_path %>
