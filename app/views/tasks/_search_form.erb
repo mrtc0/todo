@@ -1,5 +1,5 @@
-<%= form_tag(tasks_path, method: :get) do |f| %>
-  <%= text_field_tag :title %>
-  <%= select_tag :status, options_for_select(statuses), include_blank: true %>
-  <%= submit_tag t('view.common.button_text.search.') %>
+<%= form_tag(tasks_path, method: :get, class: "form-inline") do |f| %>
+  <%= text_field_tag :title, '',class: "form-control" %>
+  <%= select_tag :status, options_for_select(statuses), include_blank: true, class: "form-control" %>
+  <%= submit_tag t('view.common.button_text.search.'), class: "btn btn-dark" %>
 <% end %>
