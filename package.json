@@ -1,5 +1,12 @@
 {
   "name": "todo",
   "private": true,
-  "dependencies": {}
+  "dependencies": {
+    "flatpickr": "^4.5.1"
+  },
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "git@github.com:mrtc0/todo.git",
+  "author": "mrtc0 <mrtc0@ssrf.in>",
+  "license": "MIT"
 }
