@@ -14,7 +14,7 @@ describe 'Task' do
     visit new_task_path
     fill_in 'Title', with: 'タスク'
     fill_in 'Description', with: 'これはテスト用のタスクです'
-    fill_in 'expire_at', with: '2018-07-31 02:05'
+    fill_in 'expire_at', with: '2050-07-31 02:05'
     select 'meddium', from: 'Priority'
     find_by_id('submit').click
     expect(page).to have_content I18n.t('view.task.message.created')
