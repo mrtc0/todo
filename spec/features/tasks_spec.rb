@@ -12,11 +12,11 @@ describe 'Task' do
 
   example 'タスクが作成できて、メッセージが表示されること' do
     visit new_task_path
-    fill_in 'Title', with: 'タスク1'
+    fill_in 'Title', with: 'タスク'
     fill_in 'Description', with: 'これはテスト用のタスクです'
-    fill_in 'Expire at', with: '2019-01-01 00:00:00'
+    fill_in 'expire_at', with: '2018-07-31 02:05'
     select 'meddium', from: 'Priority'
-    find(:xpath, '/html[1]/body[1]/div[@class="container"]/form[1]/div[@class="actions"]/input[1]').click
+    find_by_id('submit').click
     expect(page).to have_content I18n.t('view.task.message.created')
     expect(Task.exists?(title: 'タスク1')).to be_truthy
   end
@@ -46,9 +46,10 @@ describe 'Task' do
     visit new_task_path
     fill_in 'Title', with: 'non-expire-task'
     fill_in 'Description', with: 'これは期限が設定されていないタスクです'
-    fill_in 'Expire at', with: ''
+    fill_in 'expire_at', with: '2030-01-01 01:00'
     select 'meddium', from: 'Priority'
-    find(:xpath, '/html[1]/body[1]/div[@class="container"]/form[1]/div[@class="actions"]/input[1]').click
+    find_by_id('submit').click
+
     expect(page).to have_content I18n.t('view.task.message.created')
     expect(Task.exists?(title: 'non-expire-task')).to be_truthy
     visit tasks_path

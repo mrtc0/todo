@@ -12,5 +12,7 @@
  *
  *= require_tree .
  *= require_self
+ *= flatpickr/dist/flatpickr
  */
 @import "bootstrap";
+@import "flatpickr/dist/flatpickr.css";

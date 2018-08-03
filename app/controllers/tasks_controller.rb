@@ -21,6 +21,7 @@ class TasksController < ApplicationController
         format.html { redirect_to @task, flash: { success: t('view.task.message.created') } }
       else
         # TODO: エラー処理を書く
+        @priorities = Task.priorities
         format.html { render :new }
       end
     end
