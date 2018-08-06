@@ -1,5 +1,6 @@
 require 'rails_helper'
 require 'kaminari'
+require 'faker'
 
 ITEM_PER_PAGE = Kaminari.config.default_per_page # kaminari の1ページあたりのアイテム数
 
@@ -14,7 +15,7 @@ describe 'Task' do
     visit new_task_path
     fill_in 'Title', with: 'タスク'
     fill_in 'Description', with: 'これはテスト用のタスクです'
-    fill_in 'expire_at', with: '2018-07-31 02:05'
+    fill_in 'expire_at', with: Faker::Time.forward.to_datetime
     select 'meddium', from: 'Priority'
     find_by_id('submit').click
     expect(page).to have_content I18n.t('view.task.message.created')
@@ -46,7 +47,7 @@ describe 'Task' do
     visit new_task_path
     fill_in 'Title', with: 'non-expire-task'
     fill_in 'Description', with: 'これは期限が設定されていないタスクです'
-    fill_in 'expire_at', with: '2030-01-01 01:00'
+    fill_in 'expire_at', with: Faker::Time.forward.to_datetime
     select 'meddium', from: 'Priority'
     find_by_id('submit').click
 
