@@ -18,7 +18,7 @@ class TasksController < ApplicationController
 
     respond_to do |format|
       if @task.save
-        format.html { redirect_to @task, flash: { success: t('view.task.message.created') } }
+        format.html { redirect_to tasks_path, flash: { success: t('view.task.message.created') } }
       else
         # TODO: エラー処理を書く
         @priorities = Task.priorities
@@ -38,7 +38,7 @@ class TasksController < ApplicationController
   def update
     respond_to do |format|
       if @task.update(task_params)
-        format.html { redirect_to @task, flash: { success: t('view.task.message.updated') } }
+        format.html { redirect_to tasks_path, flash: { success: t('view.task.message.updated') } }
       else
         # TODO: エラー処理を書く
         format.html { render :edit }
