@@ -26,7 +26,7 @@ describe 'Task' do
     visit edit_task_path(@task)
 
     fill_in 'Title', with: 'タスク-edited'
-    find(:xpath, '/html[1]/body[1]/div[@class="container"]/form[1]/div[@class="actions"]/input[1]').click
+    find_by_id('submit').click
     expect(page).to have_content I18n.t('view.task.message.updated')
     expect(Task.exists?(title: 'タスク-edited')).to eq(true)
   end
