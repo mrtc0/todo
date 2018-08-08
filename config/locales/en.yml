@@ -12,6 +12,7 @@ en:
           expire_greater_than_current_time: "The expire can not be set to the past time"
       title:
         new: "Create new task"
+        edit: "Edit task"
       link_text:
         sort_by_expire: "Sort by due date"
         sort_by_created_at: "Sort by new created date"
