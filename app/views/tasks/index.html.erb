@@ -38,6 +38,10 @@
   </tbody>
 </table>
 
-<%= paginate @tasks %>
+<div class="row justify-content-center">
+  <div class="mx-auto">
+    <%= paginate @tasks %>
+  </div>
+</div>
 
 <%= link_to t('view.common.link_text.new'), new_task_path %>
