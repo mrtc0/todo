@@ -1,4 +1,13 @@
-<%= render 'search_form', statuses: @statuses %>
+<div class="row">
+  <div class="col-12 clearfix">
+    <%= render 'search_form', statuses: @statuses %>
+  </div>
+  <div class="col-12 clearfix">
+    <div class="float-right">
+      <%= link_to t('view.common.link_text.new'), new_task_path, class: "btn btn-primary" %>
+    </div>
+  </div>
+</div>
 
 <nav class="nav">
   <%= link_to t('view.task.link_text.sort_by_expire'), tasks_path(sort: 'expire'), id: "sort_by_expire", class: "nav-link"  %>
@@ -38,6 +47,8 @@
   </tbody>
 </table>
 
-<%= paginate @tasks %>
-
-<%= link_to t('view.common.link_text.new'), new_task_path %>
+<div class="row justify-content-center">
+  <div class="mx-auto">
+    <%= paginate @tasks %>
+  </div>
+</div>
