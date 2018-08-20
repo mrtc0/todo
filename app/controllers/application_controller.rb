@@ -1,5 +1,8 @@
 class ApplicationController < ActionController::Base
+  include Session
+
   before_action :set_locale
+  before_action :require_logged_in!
 
   private
 
