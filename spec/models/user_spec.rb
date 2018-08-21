@@ -2,11 +2,6 @@ require 'rails_helper'
 
 describe User, type: :model do
   context 'Userを作成するとき' do
-    it '正常に作成できること' do
-      user = build(:user)
-      expect(user).to be_valid
-    end
-
     it 'パスワードが短い場合は作成できないこと' do
       user = build(:short_password)
       user.valid?
@@ -35,6 +30,17 @@ describe User, type: :model do
       user = build(:no_letter_in_password)
       user.valid?
       expect(user.errors.size).to eq(1)
+    end
+
+    it 'メールアドレスが不正なときは作成できないこと' do
+      user = build(:invalid_email)
+      user.valid?
+      expect(user.errors.size).to eq(1)
+    end
+
+    it '正常に作成できること' do
+      user = build(:user1)
+      expect(user).to be_valid
     end
   end
 end
