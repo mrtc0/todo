@@ -71,8 +71,8 @@ describe 'Task' do
     visit '/'
     fill_in 'title', with: 'タスク'
     find_by_id('search').click
-    # %E3%82%BF%E3%82%B9%E3%82%AF1 = タスク
-    visit '/tasks?title=%E3%82%BF%E3%82%B9%E3%82%AF1&status='
+    # %E3%82%BF%E3%82%B9%E3%82%AF = タスク
+    visit '/tasks?title=%E3%82%BF%E3%82%B9%E3%82%AF&status='
     expect(page.all('tbody tr').count).to eq(Task.filter_by_title('タスク').where(user: user1).count)
   end
 
