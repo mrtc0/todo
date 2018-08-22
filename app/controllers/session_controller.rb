@@ -15,6 +15,7 @@ class SessionController < ApplicationController
         login(@user)
         format.html { redirect_to tasks_path, flash: { success: t('view.session.message.login_successful') } }
       else
+        @user = User.new(email: credential_params[:email])
         flash.now[:danger] = t('view.session.message.login_failed')
         format.html { render :new }
       end
