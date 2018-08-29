@@ -9,6 +9,14 @@ FactoryBot.define do
     created_at { Faker::Time.backward.to_datetime }
     priority 1
 
+    factory :user1_task do
+      title 'これはユーザー1のタスクです'
+    end
+
+    factory :user2_task do
+      title 'これはユーザー2のタスクです'
+    end
+
     factory :expire_of_past_task do
       title 'タスク1'
       description 'これは期日が過去の日時のタスクです'

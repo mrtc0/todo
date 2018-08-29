@@ -5,15 +5,17 @@ require 'faker'
 ITEM_PER_PAGE = Kaminari.config.default_per_page # kaminari の1ページあたりのアイテム数
 
 describe 'Task' do
-  before do
-    @task = create_list(:task, 3)
-    create_list(:status_is_doing_task, 3)
-    create_list(:status_is_done_task, 3)
+  let(:user1) { create(:user1) }
+
+  let(:task) { Task.find_by(user: user1) }
+
+  before(:each) do
+    allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(user1)
   end
 
   example 'タスクが作成できて、メッセージが表示されること' do
     visit new_task_path
-    fill_in 'Title', with: 'タスク'
+    fill_in 'Title', with: 'タスク1'
     fill_in 'Description', with: 'これはテスト用のタスクです'
     fill_in 'expire_at', with: Faker::Time.forward.to_datetime
     select 'meddium', from: 'Priority'
@@ -23,7 +25,7 @@ describe 'Task' do
   end
 
   example 'タスクの編集ができて、メッセージが表示されること' do
-    visit edit_task_path(@task)
+    visit edit_task_path(task)
 
     fill_in 'Title', with: 'タスク-edited'
     find_by_id('submit').click
@@ -61,7 +63,7 @@ describe 'Task' do
     visit tasks_path
     click_link('sort_by_expire')
     @expire_at_days = page.all('#expire_at').map(&:text)
-    @expect_days = Task.order(expire_at: 'ASC').map { |t| t.expire_at&.strftime('%Y/%m/%d %H:%M') }
+    @expect_days = Task.where(user: user1).order(expire_at: 'ASC').map { |t| t.expire_at&.strftime('%Y/%m/%d %H:%M') }
     expect(@expire_at_days).to eq(@expect_days)
   end
 
@@ -69,9 +71,9 @@ describe 'Task' do
     visit '/'
     fill_in 'title', with: 'タスク'
     find_by_id('search').click
-    # %E3%82%BF%E3%82%B9%E3%82%AF1 = タスク
-    visit '/tasks?title=%E3%82%BF%E3%82%B9%E3%82%AF1&status='
-    expect(page.all('tbody tr').count).to eq(Task.where("title like '%タスク%'").count)
+    # %E3%82%BF%E3%82%B9%E3%82%AF = タスク
+    visit '/tasks?title=%E3%82%BF%E3%82%B9%E3%82%AF&status='
+    expect(page.all('tbody tr').count).to eq(Task.filter_by_title('タスク').where(user: user1).count)
   end
 
   example 'ステータスで検索できること' do
@@ -94,7 +96,7 @@ describe 'Task' do
   end
 
   example '優先度が高い順でソートされること' do
-    create_list(:priority_is_random_task, 10)
+    create_list(:priority_is_random_task, 10, user: user1)
     visit tasks_path
     click_link('sort_by_priority_desc')
     @priorities = page.all('#priority').map(&:text)
@@ -103,7 +105,7 @@ describe 'Task' do
   end
 
   example '優先度が低い順でソートされること' do
-    create_list(:priority_is_random_task, 10)
+    create_list(:priority_is_random_task, 10, user: user1)
     visit tasks_path
     click_link('sort_by_priority_asc')
     @priorities = page.all('#priority').map(&:text)
@@ -112,7 +114,7 @@ describe 'Task' do
   end
 
   example 'ページネーションによってタスクが10個ずつ表示されていること' do
-    create_list(:task, 50)
+    create_list(:user1_task, 50, user: user1)
     visit tasks_path
     expect(page.all('#task_table_body tr').size).to eq(ITEM_PER_PAGE)
     click_link('2')

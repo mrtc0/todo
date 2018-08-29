@@ -1,6 +1,10 @@
 ---
 en:
   view:
+    session:
+      message:
+        login_successful: "Login Successful"
+        login_failed: "Invalid email or password"
     task:
       message:
         created: "Created a new task"
