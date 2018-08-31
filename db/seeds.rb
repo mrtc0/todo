@@ -2,7 +2,7 @@ require 'faker'
 
 3.times do |i|
   User.create(
-    email: "user#{i}@example.com",
+    email: "user#{i+1}@example.com", # user1 から初めてタスク名と直感的にわかるように
     password: 'Password1234'
   )
 end
