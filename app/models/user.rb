@@ -12,5 +12,4 @@ class User < ApplicationRecord
   # パスワードは半角英小文字大文字数字が1種類以上含まれて8文字以上であること
   validates :password,
     presence: true, length: { minimum: 8 }, format: {allow_blank: true, with: /\A(?=.*?[a-z])(?=.*?[A-Z])(?=.*?\d)[a-zA-Z\d]+\z/}
-
 end
