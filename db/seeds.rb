@@ -12,8 +12,8 @@ end
   expire_at = created_at + 2.days
   user_id = Faker::Number.between(0, 2)
   Task.create(
-    title:    "タスク#{i} - user#{user_id}",
-    description:  "内容#{i}",
+    title:    "タスク#{i+1} - user#{user_id}",
+    description:  "内容#{i+1}",
     priority: Faker::Number.between(0, 3),
     status: Faker::Number.between(0, 2),
     expire_at: expire_at,
