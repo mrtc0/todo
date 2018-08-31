@@ -15,6 +15,7 @@ class TasksController < ApplicationController
 
   def create
     @task = Task.new(task_params)
+    @task.user = current_user
 
     respond_to do |format|
       if @task.save
@@ -57,7 +58,7 @@ class TasksController < ApplicationController
   private
 
     def set_task
-      @task = Task.find(params[:id])
+      @task = Task.find_by(id: params[:id], user: current_user)
     end
 
     def task_params
@@ -66,9 +67,9 @@ class TasksController < ApplicationController
 
     def set_priority
       if params[:priority]
-        @current_tasks = Task.page(params[:page]).sort_by_priority(params[:priority])
+        @current_tasks = current_user.tasks.page(params[:page]).sort_by_priority(params[:priority])
       else
-        @current_tasks = Task.page(params[:page])
+        @current_tasks = current_user.tasks.page(params[:page])
       end
     end
 end

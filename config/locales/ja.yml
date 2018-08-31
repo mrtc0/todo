@@ -1,6 +1,10 @@
 ---
 ja:
   view:
+    session:
+      message:
+        login_successful: "ログインしました"
+        login_failed: "ユーザー名かパスワードが違います"
     task:
       message:
         created: "タスクを作成しました"
