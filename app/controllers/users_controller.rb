@@ -10,7 +10,8 @@ class UsersController < ApplicationController
   def create
     if user_params[:password] != user_params[:password_confirm]
       @user = User.new(email: user_params[:email])
-      render :new
+      @user.errors.add(:user, t('view.user.message.missmatch_password'))
+      render :new and return
     end
 
     @user = User.new(email: user_params[:email], password: user_params[:password])
