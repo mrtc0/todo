@@ -1,6 +1,9 @@
 ---
 ja:
   view:
+    user:
+      message:
+        registration_successful: "登録が完了しました。ログインしてください。"
     session:
       message:
         login_successful: "ログインしました"

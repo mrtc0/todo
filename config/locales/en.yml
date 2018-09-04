@@ -1,6 +1,9 @@
 ---
 en:
   view:
+    user:
+      message:
+        registration_successful: "Registration is successful. Please Login."
     session:
       message:
         login_successful: "Login Successful"
