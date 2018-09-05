@@ -1,11 +1,11 @@
 <div class="row justify-content-center">
   <div class="col-6">
-  <% if @user.errors %>
-    <% @user.errors.full_messages.each do | e | %>
+  <% if @registration.errors %>
+    <% @registration.errors.full_messages.each do | e | %>
       <%= content_tag(:div, e, class: "alert alert-danger") %>
     <% end %>
   <% end %>
-    <%= form_with(model: @user, url: signup_path, local: true, method: :post) do |f| %>
+    <%= form_with(model: @registration, url: signup_path, local: true, method: :post) do |f| %>
       <div class="form-group">
         <%= f.label :email %>
         <%= f.text_field :email, class: "form-control", require: "true" %>
@@ -15,8 +15,8 @@
         <%= f.password_field :password, class: "form-control", require: "true" %>
       </div>
       <div class="form-group">
-        <%= f.label :password_confirm %>
-        <%= f.password_field :password_confirm, class: "form-control", require: "true" %>
+        <%= f.label :password_confirmation %>
+        <%= f.password_field :password_confirmation, class: "form-control", require: "true" %>
       </div>
       <div class="row ustify-content-center">
         <div class="mx-auto">
