@@ -1,6 +1,10 @@
 ---
 en:
   view:
+    user:
+      message:
+        registration_successful: "Registration is successful. Please Login."
+        missmatch_password: "Missmatch password."
     session:
       message:
         login_successful: "Login Successful"

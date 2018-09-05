@@ -1,6 +1,10 @@
 ---
 ja:
   view:
+    user:
+      message:
+        registration_successful: "登録が完了しました。ログインしてください。"
+        missmatch_password: "パスワードが一致していません"
     session:
       message:
         login_successful: "ログインしました"
