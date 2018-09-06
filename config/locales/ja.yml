@@ -9,6 +9,10 @@ ja:
       message:
         login_successful: "ログインしました"
         login_failed: "ユーザー名かパスワードが違います"
+      link_text:
+        login: "ログイン"
+        signup: "登録"
+        logout: "ログアウト"
     task:
       message:
         created: "タスクを作成しました"
