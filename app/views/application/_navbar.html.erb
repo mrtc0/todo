@@ -9,7 +9,7 @@
         <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
       </li>
     </ul>
-    <% if @current_user %>
+    <% if logged_in? %>
     <span class="navbar-text mr-sm-2">
       <%= @current_user.email %>
     </span>
