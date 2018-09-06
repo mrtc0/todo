@@ -15,7 +15,6 @@ Rails.application.routes.draw do
 
   # Logout
   delete 'logout', to: 'session#destroy'
-  root to: 'tasks#index'
 
   # Task
   resources :tasks
