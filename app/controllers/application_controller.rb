@@ -1,5 +1,6 @@
 class ApplicationController < ActionController::Base
   include Session
+  include SessionHelper
 
   before_action :set_locale
   before_action :require_logged_in!
