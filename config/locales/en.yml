@@ -11,7 +11,7 @@ en:
         login_failed: "Invalid email or password"
       link_text:
         login: "Login"
-        singup: "Signup"
+        singup: "Sign up"
         logout: "Logout"
     task:
       message:
