@@ -9,9 +9,21 @@
         <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
       </li>
     </ul>
-    <span class="navbar-text">
-      <!-- TODO: ここにログインリンクやユーザー名を出す -->
+    <% if logged_in? %>
+    <span class="navbar-text mr-sm-2">
+      <%= @current_user.email %>
     </span>
+    <span class="mr-sm-2">
+      <%= link_to t('view.session.link_text.logout'), logout_path, method: :delete, id: 'logout-link' %>
+    </span>
+    <% else %>
+    <span class="mr-sm-2">
+      <%= link_to t('view.session.link_text.signup'), signup_path, id: 'signup-link' %>
+    </span>
+    <span class="mr-sm-2">
+      <%= link_to t('view.session.link_text.login'), login_path, id: 'login-link' %>
+    </span>
+    <% end %>
   </div>
 </nav>
 
