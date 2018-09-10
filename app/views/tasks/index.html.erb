@@ -52,3 +52,8 @@
     <%= paginate @tasks %>
   </div>
 </div>
+
+<%# N+1 の確認用なので消す %>
+<% @all_tasks.each do | t | %>
+  <% t.user.email %>
+<% end %>
