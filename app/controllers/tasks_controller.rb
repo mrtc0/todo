@@ -6,8 +6,6 @@ class TasksController < ApplicationController
   def index
     @tasks = @current_tasks.filter_by_title_and_status(params)
     @statuses = Task.statuses
-    # N+1 の確認用なので消す
-    @all_tasks = Task.all
   end
 
   def new
