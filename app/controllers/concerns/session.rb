@@ -17,6 +17,6 @@ module Session
 
   def require_admin!
     # TODO: ちゃんと 404 を返すものを作る
-    render file: "#{Rails.root}/public/404", status: :not_found unless @current_user.admin?
+    render file: "#{Rails.root}/public/404", status: :not_found unless logged_in? && @current_user.admin?
   end
 end
