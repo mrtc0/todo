@@ -51,6 +51,7 @@ group :development, :test do
   gem 'pry-stack_explorer' 
   gem 'rubocop', require: false
   gem 'faker'
+  gem 'rack_session_access'
 end
 
 group :development do
