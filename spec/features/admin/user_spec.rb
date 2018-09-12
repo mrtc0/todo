@@ -17,4 +17,9 @@ describe 'Admin' do
     visit admin_users_path
     expect(page).to have_http_status(404)
   end
+
+  example 'ログインしていないユーザーはユーザー一覧ページにアクセスできないこと' do
+    visit admin_users_path
+    expect(current_path).to eq(login_path)
+  end
 end
