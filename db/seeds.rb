@@ -7,10 +7,18 @@ require 'faker'
   )
 end
 
+3.times do |i|
+  User.create(
+    email: "admin#{i+1}@example.com",
+    password: 'Password1234',
+    admin: true
+  )
+end
+
 10.times do |i|
   created_at = Faker::Time.forward.to_datetime
   expire_at = created_at + 2.days
-  user_id = Faker::Number.between(0, 2)
+  user_id = Faker::Number.between(0, User.all.count)
   Task.create(
     title:    "タスク#{i+1} - user#{user_id}",
     description:  "内容#{i+1}",
