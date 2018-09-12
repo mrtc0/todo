@@ -1,6 +1,12 @@
 Rails.application.routes.draw do
   root to: 'tasks#index'
-  # User Registration
+
+  # Admin
+  namespace :admin do
+    get 'users', to: 'users#index'
+  end
+
+  # Signup
   get 'signup', to: 'users#new'
   post 'signup', to: 'users#create'
 
