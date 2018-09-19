@@ -50,5 +50,10 @@ FactoryBot.define do
     factory :invalid_email do
       email 'email.com'
     end
+
+    factory :admin do
+      email 'amdin@example.com'
+      admin true
+    end
   end
 end
