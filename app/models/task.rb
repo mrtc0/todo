@@ -1,5 +1,6 @@
 class Task < ApplicationRecord
   belongs_to :user
+  counter_culture :user
   enum status: { todo: 0, doing: 1, done: 2 }
   enum priority: { non: 0, low: 1, meddium: 2, high: 3 }
 

@@ -1,3 +1,27 @@
-<% @users.each do | user | %>
-  <p><%= user.email %> <%= user.admin %></p>
-<% end %>
+<table id="user_table" class="table">
+  <thead class="thead-dark">
+    <tr>
+      <th>Email</th>
+      <th>Task</th>
+      <th>Action</th>
+    </tr>
+  </thead>
+  <tbody id="user_table_body">
+    <% @users.each do | user | %>
+      <% if user.admin %>
+        <tr class="text-danger">
+      <% else %>
+        <tr>
+      <% end %>
+        <td id="email"><%= user.email %></td>
+        <td id="task">
+          <%= user.tasks_count %>
+        </td>
+        <td id="action">
+          <button class="btn">編集</button>
+          <button class="btn">削除</button>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
