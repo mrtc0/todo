@@ -5,6 +5,7 @@ ja:
       message:
         registration_successful: "登録が完了しました。ログインしてください。"
         missmatch_password: "パスワードが一致していません"
+        updated: "更新しました"
     session:
       message:
         login_successful: "ログインしました"
