@@ -18,7 +18,10 @@
           <%= user.tasks_count %>
         </td>
         <td id="action">
-          <button class="btn">編集</button>
+          <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#user-<%= user.id %>-edit-modal">
+            編集
+          </button>
+          <%= render 'user_edit_modal', user: user %>
           <button class="btn">削除</button>
         </td>
       </tr>

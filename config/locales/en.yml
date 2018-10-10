@@ -5,6 +5,7 @@ en:
       message:
         registration_successful: "Registration is successful. Please Login."
         missmatch_password: "Missmatch password."
+        updated: "Updated"
     session:
       message:
         login_successful: "Login Successful"
