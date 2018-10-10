@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   # Admin
   namespace :admin do
     get 'users', to: 'users#index'
-    put 'users/:id', to: 'users#update'
+    patch 'users/:id', to: 'users#update'
   end
 
   # Signup
